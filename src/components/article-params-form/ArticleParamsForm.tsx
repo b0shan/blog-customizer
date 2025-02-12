@@ -2,12 +2,19 @@ import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
 
 import styles from './ArticleParamsForm.module.scss';
+import clsx from 'clsx';
 
-export const ArticleParamsForm = () => {
+type Props = {
+	isOpen: boolean;
+	setIsOpen: (open: boolean) => void;
+};
+
+export const ArticleParamsForm = ({ isOpen, setIsOpen }: Props) => {
 	return (
 		<>
-			<ArrowButton isOpen={false} onClick={() => {}} />
-			<aside className={styles.container}>
+			<ArrowButton isOpen={isOpen} onClick={setIsOpen} />
+			<aside
+				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form}>
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' htmlType='reset' type='clear' />
