@@ -13,21 +13,27 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
 const App = () => {
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Управляем состоянием
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [articleState, setArticleState] = useState(defaultArticleState); // Добавляем состояние статьи
 
 	return (
 		<main
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': defaultArticleState.fontFamilyOption.value,
-					'--font-size': defaultArticleState.fontSizeOption.value,
-					'--font-color': defaultArticleState.fontColor.value,
-					'--container-width': defaultArticleState.contentWidth.value,
-					'--bg-color': defaultArticleState.backgroundColor.value,
+					'--font-family': articleState.fontFamilyOption.value,
+					'--font-size': articleState.fontSizeOption.value,
+					'--font-color': articleState.fontColor.value,
+					'--container-width': articleState.contentWidth.value,
+					'--bg-color': articleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+			<ArticleParamsForm
+				isOpen={isSidebarOpen}
+				setIsOpen={setIsSidebarOpen}
+				articleState={articleState} // Передаём состояние статьи
+				setArticleState={setArticleState} // Передаём функцию обновления
+			/>
 			<Article />
 		</main>
 	);
