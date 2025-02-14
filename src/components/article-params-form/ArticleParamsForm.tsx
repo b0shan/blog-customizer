@@ -17,6 +17,7 @@ import {
 	backgroundColors,
 	defaultArticleState,
 	ArticleStateType,
+	OptionType,
 } from 'src/constants/articleProps';
 
 interface IArticleParamsFormProps {
@@ -59,7 +60,7 @@ export const ArticleParamsForm = ({
 	}, [setArticleState]);
 
 	const handleChange = useCallback(
-		(field: keyof typeof formState) => (selectOption: any) => {
+		(field: keyof typeof formState) => (selectOption: OptionType) => {
 			setFormState((prevState) => ({
 				...prevState,
 				[field]: selectOption,

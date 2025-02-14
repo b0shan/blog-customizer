@@ -14,7 +14,7 @@ const root = createRoot(domNode);
 
 const App = () => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-	const [articleState, setArticleState] = useState(defaultArticleState); // Добавляем состояние статьи
+	const [articleState, setArticleState] = useState(defaultArticleState);
 
 	return (
 		<main
@@ -31,8 +31,8 @@ const App = () => {
 			<ArticleParamsForm
 				isOpen={isSidebarOpen}
 				setIsOpen={setIsSidebarOpen}
-				articleState={articleState} // Передаём состояние статьи
-				setArticleState={setArticleState} // Передаём функцию обновления
+				articleState={articleState}
+				setArticleState={setArticleState}
 			/>
 			<Article />
 		</main>
