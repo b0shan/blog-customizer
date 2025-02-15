@@ -5,7 +5,7 @@ import { Button } from 'src/ui/button';
 
 import styles from './ArticleParamsForm.module.scss';
 import { useState, useRef, FormEvent, useEffect, useCallback } from 'react';
-import { Select } from 'src/ui//select';
+import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
 import { Text } from 'src/ui/text';
@@ -21,10 +21,7 @@ import {
 } from 'src/constants/articleProps';
 
 interface IArticleParamsFormProps {
-	articleState: ArticleStateType;
 	setArticleState: (param: ArticleStateType) => void;
-	isOpen: boolean;
-	setIsOpen: (open: boolean) => void;
 }
 
 export const ArticleParamsForm = ({
@@ -41,12 +38,9 @@ export const ArticleParamsForm = ({
 
 	const menuRef = useRef<HTMLFormElement | null>(null);
 
-	const toggleOpenForm = useCallback(
-		(bool?: boolean): void => {
-			setIsMenuOpen(bool !== undefined ? bool : !isOpen);
-		},
-		[isOpen]
-	);
+	const toggleOpenForm = () => {
+		setIsMenuOpen((prev) => !prev);
+	};
 
 	const reloadState = useCallback(() => {
 		setFormState({
@@ -92,7 +86,6 @@ export const ArticleParamsForm = ({
 		return () => document.removeEventListener('mousedown', handleOutsideClick);
 	}, []);
 
-	console.log(isOpen);
 	return (
 		<>
 			<ArrowButton onClick={() => toggleOpenForm()} isOpen={isOpen} />
